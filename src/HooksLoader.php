@@ -25,6 +25,16 @@ class HooksLoader
     private $hooks = [];
 
     /**
+     * HooksLoader constructor.
+     * @param array $classNames
+     * @throws HookException
+     */
+    public function __construct(array $classNames = [])
+    {
+        $this->add($classNames);
+    }
+
+    /**
      * Add new hook class
      *
      * @param array|string $classNames
