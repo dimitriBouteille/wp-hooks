@@ -25,7 +25,7 @@ abstract class AbstractHookBuilder
      * @param int $acceptedArgs
      * @return $this
      */
-    public function add($names, $callback,int $priority = 10,  int $acceptedArgs = 3): self
+    public function add($names, $callback, int $priority = 10,  int $acceptedArgs = 3): self
     {
         if(is_string($names)) {
             $names = [$names];

@@ -1,16 +1,16 @@
 <?php
 
-namespace Dbout\WpHook\Support;
+namespace Dbout\WpHook\Facade;
 
 /**
- * Class AbstractSupport
- * @package Dbout\WpHook\Support
+ * Class AbstractFacade
+ * @package Dbout\WpHook\Facade
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github
  * @copyright   (c) 2020 Dimitri BOUTEILLE
  */
-abstract class AbstractSupport
+abstract class AbstractFacade
 {
 
     /**
