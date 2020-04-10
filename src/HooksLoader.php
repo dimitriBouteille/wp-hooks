@@ -1,14 +1,14 @@
 <?php
 
-namespace Dbout\WpHook;
+namespace Dbout\WpHooks;
 
-use Dbout\WpHook\Builder\ActionBuilder;
-use Dbout\WpHook\Exception\HookException;
-use Dbout\WpHook\Hookable\HookableInterface;
+use Dbout\WpHooks\Builder\ActionBuilder;
+use Dbout\WpHooks\Exception\HookException;
+use Dbout\WpHooks\Hookable\HookableInterface;
 
 /**
  * Class HooksLoader
- * @package Dbout\WpHook
+ * @package Dbout\WpHooks
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github

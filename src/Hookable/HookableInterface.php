@@ -1,10 +1,10 @@
 <?php
 
-namespace Dbout\WpHook\Hookable;
+namespace Dbout\WpHooks\Hookable;
 
 /**
  * Interface HookableInterface
- * @package Dbout\WpHook\Hookable
+ * @package Dbout\WpHooks\Hookable
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github
@@ -31,6 +31,7 @@ interface HookableInterface
 
     /**
      * Function performed by the action
+     * If you want get parameters, use func_get_args()
      *
      * @return void
      */

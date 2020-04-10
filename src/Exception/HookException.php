@@ -1,10 +1,10 @@
 <?php
 
-namespace Dbout\WpHook\Exception;
+namespace Dbout\WpHooks\Exception;
 
 /**
  * Class HookException
- * @package Dbout\WpHook\Exception
+ * @package Dbout\WpHooks\Exception
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github

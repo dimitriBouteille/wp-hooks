@@ -1,10 +1,10 @@
 <?php
 
-namespace Dbout\WpHook\Builder;
+namespace Dbout\WpHooks\Builder;
 
 /**
  * Class AbstractHookBuilder
- * @package Dbout\WpHook
+ * @package Dbout\WpHooks
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github
@@ -24,6 +24,7 @@ abstract class AbstractHookBuilder
      * @param int $priority
      * @param int $acceptedArgs
      * @return $this
+     * @throws \ReflectionException
      */
     public function add($names, $callback, int $priority = 10,  int $acceptedArgs = 3): self
     {
@@ -40,12 +41,13 @@ abstract class AbstractHookBuilder
 
     /**
      * @param string $hook
-     * @param null $callback
+     * @param null|array|callable|string $callback
      * @param int $priority
      * @return $this
      */
     public function remove(string $hook, $callback = null, int $priority = 10): self
     {
+        $this->removeHook($hook, $callback, $priority);
         return $this;
     }
 
@@ -85,35 +87,47 @@ abstract class AbstractHookBuilder
      * @param $callback
      * @param int $priority
      * @param int $acceptedArgs
+     * @throws \ReflectionException
      */
-    protected function addEvent(string $hookName, $callback, int $priority, int $acceptedArgs)
+    protected function addEvent(string $hookName, $callback, int $priority = 10, int $acceptedArgs = 3)
     {
-        // Closure or [MyClass::class, 'callback']
-        if($callback instanceof \Closure || is_array($callback) || is_string($callback)) {
+        if($callback instanceof \Closure) {
+
+            // Closure
             $this->registerHook($hookName, $callback, $priority, $acceptedArgs);
-        } else if(is_string($callback)) {
+        } else if(is_array($callback)) {
 
-            // 'MyClass::myFunction'
-            if(strpos($callback, '::') >= 0) {
-
-                $this->registerHook($hookName, $this->makeCallbackClassFunction($callback), $priority, $acceptedArgs);
+            // [MyClass::class, 'callback']
+            list($instance, $function) = $callback;
+            if(is_string($instance)) {
+                $this->registerHook($hookName, [$this->makeInstance($instance), $function], $priority, $acceptedArgs);
             } else {
-
-                // Function name
-                // ie : myFunction
                 $this->registerHook($hookName, $callback, $priority, $acceptedArgs);
             }
+        } else if(is_string($callback) && strpos($callback, '@') !== false) {
+
+            // MyClass@myFunction
+            list($class, $function) = explode('@', $callback);
+            $this->registerHook($hookName, [$this->makeInstance($class), $function], $priority, $acceptedArgs);
+        } else {
+
+            // Function name
+            // ie : myFunction
+            $this->registerHook($hookName, $callback, $priority, $acceptedArgs);
         }
 
     }
 
     /**
-     * @param string $callback
-     * @return array
+     * Create new instance of class
+     *
+     * @param string $class
+     * @return object
+     * @throws \ReflectionException
      */
-    protected function makeCallbackClassFunction(string $callback): array
+    protected function makeInstance(string $class)
     {
-        die('test');
+        return (new \ReflectionClass($class))->newInstanceWithoutConstructor();
     }
 
     /**
@@ -137,10 +151,18 @@ abstract class AbstractHookBuilder
     /**
      * @param string $hookName
      * @param $callback
-     * @param int $priority
-     * @param int $acceptedArgs
+     * @param int|null $priority
+     * @param int|null $acceptedArgs
      * @return mixed
      */
-    protected abstract function registerHook(string $hookName, $callback, int $priority, int $acceptedArgs);
+    protected abstract function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs);
+
+    /**
+     * @param string $hookName
+     * @param $callback
+     * @param int|null $priority
+     * @return mixed
+     */
+    protected abstract function removeHook(string $hookName, $callback, ?int $priority = null);
 
 }

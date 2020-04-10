@@ -1,10 +1,10 @@
 <?php
 
-namespace Dbout\WpHook\Hookable;
+namespace Dbout\WpHooks\Hookable;
 
 /**
  * Class Hookable
- * @package Dbout\WpHook\Hookable
+ * @package Dbout\WpHooks\Hookable
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github

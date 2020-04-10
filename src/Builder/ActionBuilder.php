@@ -1,10 +1,10 @@
 <?php
 
-namespace Dbout\WpHook\Builder;
+namespace Dbout\WpHooks\Builder;
 
 /**
  * Class ActionBuilder
- * @package Dbout\WpHook\Builder
+ * @package Dbout\WpHooks\Builder
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github
@@ -38,15 +38,32 @@ class ActionBuilder extends AbstractHookBuilder
     }
 
     /**
+     * Call add_action function
+     * https://developer.wordpress.org/reference/functions/add_action/
+     *
      * @param string $hookName
      * @param $callback
-     * @param int $priority
-     * @param int $acceptedArgs
+     * @param int|null $priority
+     * @param int|null $acceptedArgs
      * @return mixed|void
      */
-    protected function registerHook(string $hookName, $callback, int $priority, int $acceptedArgs)
+    protected function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs)
     {
         add_action($hookName, $callback, $priority, $acceptedArgs);
+    }
+
+    /**
+     * Call remove_action function
+     * https://developer.wordpress.org/reference/functions/remove_action/
+     *
+     * @param string $hookName
+     * @param $callback
+     * @param int|null $priority
+     * @return mixed|void
+     */
+    protected function removeHook(string $hookName, $callback, ?int $priority = null)
+    {
+        remove_action($hookName, $callback, $priority);
     }
 
 }

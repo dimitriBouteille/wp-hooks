@@ -1,10 +1,10 @@
 <?php
 
-namespace Dbout\WpHook\Facade;
+namespace Dbout\WpHooks\Facade;
 
 /**
  * Class AbstractFacade
- * @package Dbout\WpHook\Facade
+ * @package Dbout\WpHooks\Facade
  *
  * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
  * @link        https://github.com/dimitriBouteille Github
