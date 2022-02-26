@@ -10,19 +10,17 @@ use Dbout\WpHooks\Hookable\HookableInterface;
  * Class HooksLoader
  * @package Dbout\WpHooks
  *
- * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
- * @link        https://github.com/dimitriBouteille Github
- * @copyright   (c) 2020 Dimitri BOUTEILLE
+ * @author Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
+ * @copyright Copyright (c) 2022
  */
 class HooksLoader
 {
 
     /**
      * Contains all hook class to be loaded
-     *
      * @var string[]
      */
-    private $hooks = [];
+    protected array $hooks = [];
 
     /**
      * HooksLoader constructor.
@@ -57,6 +55,7 @@ class HooksLoader
     }
 
     /**
+     * @return void
      * @throws HookException
      * @throws \ReflectionException
      */
@@ -79,7 +78,5 @@ class HooksLoader
             }
 
         }
-
     }
-
 }

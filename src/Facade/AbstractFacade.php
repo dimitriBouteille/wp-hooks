@@ -6,9 +6,8 @@ namespace Dbout\WpHooks\Facade;
  * Class AbstractFacade
  * @package Dbout\WpHooks\Facade
  *
- * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
- * @link        https://github.com/dimitriBouteille Github
- * @copyright   (c) 2020 Dimitri BOUTEILLE
+ * @author Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
+ * @copyright Copyright (c) 2022
  */
 abstract class AbstractFacade
 {
@@ -28,5 +27,4 @@ abstract class AbstractFacade
         $instance = static::getInstance();
         return $instance->$name(...$arguments);
     }
-
 }
