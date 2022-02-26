@@ -4,11 +4,10 @@ namespace Dbout\WpHooks\Builder;
 
 /**
  * Class AbstractHookBuilder
- * @package Dbout\WpHooks
+ * @package Dbout\WpHooks\Builder
  *
- * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
- * @link        https://github.com/dimitriBouteille Github
- * @copyright   (c) 2020 Dimitri BOUTEILLE
+ * @author Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
+ * @copyright Copyright (c) 2022
  */
 abstract class AbstractHookBuilder
 {
@@ -16,7 +15,7 @@ abstract class AbstractHookBuilder
     /**
      * @var array
      */
-    protected static $_instances = [];
+    protected static array $_instances = [];
 
     /**
      * @param $names
@@ -120,7 +119,6 @@ abstract class AbstractHookBuilder
 
     /**
      * Create new instance of class
-     *
      * @param string $class
      * @return object
      * @throws \ReflectionException
@@ -153,16 +151,15 @@ abstract class AbstractHookBuilder
      * @param $callback
      * @param int|null $priority
      * @param int|null $acceptedArgs
-     * @return mixed
+     * @return void
      */
-    protected abstract function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs);
+    protected abstract function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs): void;
 
     /**
      * @param string $hookName
      * @param $callback
      * @param int|null $priority
-     * @return mixed
+     * @return void
      */
-    protected abstract function removeHook(string $hookName, $callback, ?int $priority = null);
-
+    protected abstract function removeHook(string $hookName, $callback, ?int $priority = null): void;
 }

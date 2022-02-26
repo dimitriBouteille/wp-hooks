@@ -6,9 +6,8 @@ namespace Dbout\WpHooks\Hookable;
  * Class Hookable
  * @package Dbout\WpHooks\Hookable
  *
- * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
- * @link        https://github.com/dimitriBouteille Github
- * @copyright   (c) 2020 Dimitri BOUTEILLE
+ * @author Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
+ * @copyright Copyright (c) 2022
  */
 abstract class Hookable implements HookableInterface
 {
@@ -16,7 +15,7 @@ abstract class Hookable implements HookableInterface
     /**
      * @var null|string
      */
-    protected $hook = null;
+    protected ?string $hook = null;
 
     /**
      * Hook priority
@@ -24,7 +23,7 @@ abstract class Hookable implements HookableInterface
      *
      * @var int
      */
-    protected $priority = 10;
+    protected int $priority = 10;
 
     /**
      * @return int
@@ -41,5 +40,4 @@ abstract class Hookable implements HookableInterface
     {
         return $this->hook;
     }
-
 }

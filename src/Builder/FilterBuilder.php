@@ -14,12 +14,7 @@ class FilterBuilder extends AbstractHookBuilder
 {
 
     /**
-     * Call apply_filters functions
-     * https://developer.wordpress.org/reference/functions/apply_filters/
-     *
-     * @param string $hook
-     * @param $args
-     * @return mixed|void   The filtered value after all hooked functions are applied to it.
+     * @inheritdoc
      */
     protected function runDefault(string $hook, $args)
     {
@@ -27,12 +22,7 @@ class FilterBuilder extends AbstractHookBuilder
     }
 
     /**
-     * Call apply_filters_ref_array functions
-     * https://developer.wordpress.org/reference/functions/apply_filters_ref_array/
-     *
-     * @param string $hook
-     * @param array $args
-     * @return mixed        The filtered value after all hooked functions are applied to it.
+     * @inheritdoc
      */
     protected function runWithRefArray(string $hook, array $args = [])
     {
@@ -40,32 +30,18 @@ class FilterBuilder extends AbstractHookBuilder
     }
 
     /**
-     * Call add_filter function
-     * https://developer.wordpress.org/reference/functions/add_filter/
-     *
-     * @param string $hookName
-     * @param $callback
-     * @param int $priority
-     * @param int $acceptedArgs
-     * @return mixed|void
+     * @inheritdoc
      */
-    protected function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs)
+    protected function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs): void
     {
         add_filter($hookName, $callback, $priority, $acceptedArgs);
     }
 
     /**
-     * Call remove_filter function
-     * https://developer.wordpress.org/reference/functions/remove_filter/
-     *
-     * @param string $hookName
-     * @param $callback
-     * @param int|null $priority
-     * @return mixed|void
+     * @inheritdoc
      */
-    protected function removeHook(string $hookName, $callback, ?int $priority = null)
+    protected function removeHook(string $hookName, $callback, ?int $priority = null): void
     {
         remove_filter($hookName, $callback, $priority);
     }
-
 }

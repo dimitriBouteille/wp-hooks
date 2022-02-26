@@ -6,19 +6,14 @@ namespace Dbout\WpHooks\Builder;
  * Class ActionBuilder
  * @package Dbout\WpHooks\Builder
  *
- * @author      Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
- * @link        https://github.com/dimitriBouteille Github
- * @copyright   (c) 2020 Dimitri BOUTEILLE
+ * @author Dimitri BOUTEILLE <bonjour@dimitri-bouteille.fr>
+ * @copyright Copyright (c) 2022
  */
 class ActionBuilder extends AbstractHookBuilder
 {
 
     /**
-     * Call do_action function
-     * https://developer.wordpress.org/reference/functions/do_action/
-     *
-     * @param string $hook  Action name
-     * @param mixed $args   Arguments
+     * @inheritdoc
      */
     protected function runDefault(string $hook, $args): void
     {
@@ -26,11 +21,7 @@ class ActionBuilder extends AbstractHookBuilder
     }
 
     /**
-     * Call do_action_ref_array function
-     * https://developer.wordpress.org/reference/functions/do_action_ref_array/
-     *
-     * @param string $hook  Action name
-     * @param mixed $args   Arguments
+     * @inheritdoc
      */
     protected function runWithRefArray(string $hook, array $args = []): void
     {
@@ -38,32 +29,18 @@ class ActionBuilder extends AbstractHookBuilder
     }
 
     /**
-     * Call add_action function
-     * https://developer.wordpress.org/reference/functions/add_action/
-     *
-     * @param string $hookName
-     * @param $callback
-     * @param int|null $priority
-     * @param int|null $acceptedArgs
-     * @return mixed|void
+     * @inheritdoc
      */
-    protected function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs)
+    protected function registerHook(string $hookName, $callback, ?int $priority, ?int $acceptedArgs): void
     {
         add_action($hookName, $callback, $priority, $acceptedArgs);
     }
 
     /**
-     * Call remove_action function
-     * https://developer.wordpress.org/reference/functions/remove_action/
-     *
-     * @param string $hookName
-     * @param $callback
-     * @param int|null $priority
-     * @return mixed|void
+     * @inheritdoc
      */
-    protected function removeHook(string $hookName, $callback, ?int $priority = null)
+    protected function removeHook(string $hookName, $callback, ?int $priority = null): void
     {
         remove_action($hookName, $callback, $priority);
     }
-
 }
